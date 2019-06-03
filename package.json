@@ -1,0 +1,73 @@
+{
+  "name": "paxport_frontend_react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:analize": "webpack --env.NODE_ENV=prod --json > temp/stats.json",
+    "start": "webpack-dev-server --env.NODE_ENV=dev --progress --colors --cache",
+    "dev:watch": "webpack --env.NODE_ENV=dev --watch --progress",
+    "build:dev": "webpack --env.NODE_ENV=dev --remove-dev --progress",
+    "build:prod": "webpack --env.NODE_ENV=prod --remove-dev --progress",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint:ts": "tslint 'src/**/*.ts{,x}'",
+    "lint:ts:fix": "tslint --fix 'src/**/*.ts{,x}'",
+    "lint:style": "stylelint 'src/**/*.styl'",
+    "lint:style:fix": "stylelint 'src/**/*.styl' --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.0",
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
+    "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^5.0.0",
+    "css-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^4.0.0-beta.5",
+    "jest": "^24.7.1",
+    "postcss-loader": "^3.0.0",
+    "react-hot-loader": "^4.8.4",
+    "resolve-url-loader": "^3.1.0",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^5.3.3",
+    "tslint": "5.12.1",
+    "tslint-config-airbnb": "5.11.1",
+    "tslint-import-rules": "0.3.0",
+    "tslint-no-circular-imports": "^0.6.2",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.4.4",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
+    "classnames": "^2.2.6",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/lib"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
