@@ -10,7 +10,7 @@
     "target": "es2017",
     "esModuleInterop": true,
     "lib": ["dom", "es6", "es7"],
-    "allowJs": true,
+    "allowJs": false,
     "jsx": "react",
     "declaration": true,
     "moduleResolution": "node",

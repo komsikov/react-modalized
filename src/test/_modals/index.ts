@@ -1,4 +1,4 @@
-import {ModalList} from 'lib'
+import {ModalList} from '../../lib'
 import {TestModal} from './TestModal'
 
 

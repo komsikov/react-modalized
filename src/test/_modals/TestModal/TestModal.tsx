@@ -1,5 +1,5 @@
 import React,{PureComponent} from 'react'
-import {ModalsProps} from 'lib'
+import {ModalsProps} from '../../../lib'
 
 
 type Props = ModalsProps & {}

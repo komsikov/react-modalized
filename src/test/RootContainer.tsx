@@ -1,13 +1,13 @@
 import React, {PureComponent} from 'react'
-import {ModalsProvider, ModalList} from 'lib'
+import {ModalsProvider, ModalList} from '../lib'
 import {modals} from './_modals'
 
 
-type Props1 = {
+type Props = {
   modals: ModalList,
 }
 
-const ContentComponent = (props: Props1) => (
+const ContentComponent = (props: Props) => (
   <div>
     <ModalsProvider modals={props.modals}>
       <div onClick={() => null} >
@@ -17,9 +17,7 @@ const ContentComponent = (props: Props1) => (
   </div>
 )
 
-type Props = {}
-
-export class RootComponent extends PureComponent<Props, {}> {
+export class RootComponent extends PureComponent<{}, {}> {
   render() {
     return <ContentComponent modals={modals} />
   }

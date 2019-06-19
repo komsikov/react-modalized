@@ -1,8 +1,12 @@
 {
-  "name": "paxport_frontend_react",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@kddaddy/react-modalize",
+  "version": "0.1.0",
+  "description": "App modalization package",
+  "repository": "https://github.com/kddaddy/react-modalize",
+  "license": "MIT",
+  "keywords": ["react", "modal", "javascript"],
+  "main": "src/index.ts",
+  "author": "kddaddy",
   "scripts": {
     "build:analize": "webpack --env.NODE_ENV=prod --json > temp/stats.json",
     "start": "webpack-dev-server --env.NODE_ENV=dev --progress --colors --cache",
@@ -16,9 +20,6 @@
     "lint:style": "stylelint 'src/**/*.styl'",
     "lint:style:fix": "stylelint 'src/**/*.styl' --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.0",
