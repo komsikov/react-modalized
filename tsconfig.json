@@ -1,0 +1,61 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "module": "commonjs",
+    "target": "es2017",
+    "esModuleInterop": true,
+    "lib": ["dom", "es6", "es7"],
+    "allowJs": false,
+    "jsx": "react",
+    "declaration": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "types": ["jest"],
+    "typeRoots": [
+      "./src/interfaces/**/*",
+      "./src/types/**/*",
+      "node_modules/@types"
+    ],
+    "paths": {
+      "lib": ["lib"],
+      "interfaces": ["src/interfaces"],
+      "types": ["src/types"],
+      "selectors": ["src/selectors"],
+      "utilities": ["src/utils"],
+      "images": ["src/assets/images"],
+      "styles": ["src/assets/styles"],
+      "services": ["src/services"],
+      "actions": ["src/actions"],
+      "validations": ["src/_validations"],
+      "constants": ["src/constants"],
+      "containers": ["src/containers"],
+      "components": ["src/components"],
+      "appComponents": ["src/components/_app"],
+      "formComponents": ["src/components/_Form"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "built",
+    "build",
+    "dist"
+  ]
+}

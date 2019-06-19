@@ -1,0 +1,62 @@
+{
+  "name": "react-modalized",
+  "version": "0.1.0",
+  "description": "App modalization package",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kddaddy/react-modalize.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "modal",
+    "javascript"
+  ],
+  "main": "src/lib/index.ts",
+  "author": "kddaddy",
+  "bugs": {
+    "url": "https://github.com/kddaddy/react-modalized/issues"
+  },
+  "homepage": "https://github.com/kddaddy/react-modalized",
+  "scripts": {
+    "build:dev": "tsc",
+    "build:prod": "tsc",
+    "test": "jest",
+    "lint": "tslint 'src/**/*.ts{,x}'",
+    "lint:fix": "tslint --fix 'src/**/*.ts{,x}'"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.0",
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
+    "jest": "^24.7.1",
+    "ts-jest": "^23.10.5",
+    "tslint": "5.12.1",
+    "tslint-config-airbnb": "5.11.1",
+    "tslint-import-rules": "0.3.0",
+    "tslint-no-circular-imports": "^0.6.2",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.4.4"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ]
+  }
+}
