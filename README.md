@@ -1,5 +1,7 @@
 # react-modalize
 
+![build](https://img.shields.io/circleci/build/github/kddaddy/react-modalized.svg?style=for-the-badge&token=3a0afc02b172a8595df1cbc17c1bb44b2181b347)
+
 Modals system rendering for react applications
 
 ![react-modalize](./modalize.jpg)

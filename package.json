@@ -2,15 +2,22 @@
   "name": "react-modalized",
   "version": "0.1.0",
   "description": "App modalization package",
-  "repository": "https://github.com/kddaddy/react-modalize",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kddaddy/react-modalize.git"
+  },
   "license": "MIT",
   "keywords": [
     "react",
     "modal",
     "javascript"
   ],
-  "main": "src/index.ts",
+  "main": "src/lib/index.ts",
   "author": "kddaddy",
+  "bugs": {
+    "url": "https://github.com/kddaddy/react-modalized/issues"
+  },
+  "homepage": "https://github.com/kddaddy/react-modalized",
   "scripts": {
     "build:dev": "tsc",
     "build:prod": "tsc",
