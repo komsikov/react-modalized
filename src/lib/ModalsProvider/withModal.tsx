@@ -1,6 +1,5 @@
 import React, {ReactType} from 'react'
-import {ModalsContext, ModalsContextType} from './ModalsContext'
-import {ModalProps} from './ModalsProvider'
+import {ModalsContext, ModalsContextType, ModalProps} from './ModalsContext'
 
 
 export type ModalsProps = {

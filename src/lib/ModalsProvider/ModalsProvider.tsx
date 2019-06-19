@@ -1,14 +1,9 @@
-import React, {Component, ComponentType, ReactNode} from 'react'
-import {ModalsContext} from './ModalsContext'
-import cn from 'classnames'
-import style from './ModalProvider.module.styl'
+import React, {Component, ComponentType, ReactNode, CSSProperties} from 'react'
+import {ModalsContext, ModalProps} from './ModalsContext'
+
 
 export type ModalList = {[key: string]: ComponentType}
 export type ModalState = {[key: string]: boolean}
-
-// tslint:disable:no-any
-export type ModalProps = {[key: string]: any}
-// tslint:enable:no-any
 
 export type RefType = React.RefObject<HTMLDivElement>
 
@@ -24,7 +19,6 @@ type State = {
 
 interface ModalsProviderImpl {
   modalNode: RefType;
-  // constructor(props: Props): void;
   showModal(modal: string, modalProps: ModalProps): void;
   closeModal(modal: string): void;
   resetModals(): void;
@@ -35,12 +29,23 @@ interface ModalsProviderImpl {
 export class ModalsProvider extends Component<Props, State> implements ModalsProviderImpl {
   modalNode: RefType = React.createRef()
   state: State
+  style: CSSProperties
+
   constructor(props: Props) {
     super(props)
     
     this.state = {
       modals: Object.keys(props.modals).reduce((a, modal) => Object.assign({[modal]: false}, a), {}),
       modalsProps: {},
+    }
+
+    this.style = {
+      width: '100%',
+      height: '100%',
+      maxHeight: '100vh',
+      background: 'rgba(0, 0, 0, 0.5)',
+      position: 'fixed',
+      zIndex: 10,
     }
   }
 
@@ -112,7 +117,7 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
   createModalsContainer = () => {
     return ({children}: {children: ReactNode}) => (
       // @ts-ignore
-      <div ref={this.modalNode} className={cn(style.modalProvider)}>{children}</div>
+      <div ref={this.modalNode} style={this.style}>{children}</div>
     )
   }
 

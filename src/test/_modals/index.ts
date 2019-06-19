@@ -3,5 +3,5 @@ import {TestModal} from './TestModal'
 
 
 export const modals: ModalList = {
-  ['COPY_FEES_MODAL']: TestModal,
+  ['TEST_MODAL']: TestModal,
 }

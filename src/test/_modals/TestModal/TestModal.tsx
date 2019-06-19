@@ -7,10 +7,13 @@ type Props = ModalsProps & {}
 export class TestModal extends PureComponent<Props, {}> {
   render() {
     return (
-      <div className="">
+      <div>
         Open modal name
         <input />
-        <button onClick={}> Open</button>
+        <button onClick={() => null}>Open</button>
+        {/*
+        TODO: remove emty string param from close modal */}
+        <button onClick={() => this.props.closeModal('')}>Close</button>
       </div>
     )
   }

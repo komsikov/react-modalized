@@ -1,5 +1,5 @@
 {
-  "name": "@kddaddy/react-modalize",
+  "name": "react-modalized",
   "version": "0.1.0",
   "description": "App modalization package",
   "repository": "https://github.com/kddaddy/react-modalize",
@@ -12,7 +12,6 @@
   "main": "src/index.ts",
   "author": "kddaddy",
   "scripts": {
-    "start": "tsc",
     "build:dev": "tsc",
     "build:prod": "tsc",
     "test": "jest",
