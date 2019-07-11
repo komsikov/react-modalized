@@ -25,7 +25,7 @@
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "rootDir": ".",
-    "types": ["types", "jest"],
+    "types": ["jest"],
     "typeRoots": ["types", "node_modules/@types"],
     "paths": {
       "src": ["src"],
@@ -33,6 +33,6 @@
       "types": ["types"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["lib/**/*", "test/**/*"],
   "exclude": ["node_modules", "built", "build", "dist"]
 }

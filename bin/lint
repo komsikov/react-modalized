@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tslint '(lib|test)/**/*.ts{,x}'
