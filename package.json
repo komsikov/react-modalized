@@ -7,7 +7,13 @@
     "url": "https://github.com/kddaddy/react-modalize.git"
   },
   "license": "MIT",
-  "keywords": ["react", "modal", "modals", "javascript", "js"],
+  "keywords": [
+    "react",
+    "modal",
+    "modals",
+    "javascript",
+    "js"
+  ],
   "main": "dist/react-modalized.cjs.js",
   "module": "dist/react-modalized.esm.js",
   "browser": "dist/react-modalized.umd.js",
@@ -17,15 +23,14 @@
   },
   "homepage": "https://github.com/kddaddy/react-modalized",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "test": "node test/test.js",
-    "pretest": "npm run build",
-    "lint": "tslint 'lib/**/*.ts{,x}'",
-    "lint:fix": "tslint --fix 'lib/**/*.ts{,x}'"
+    "build": "./bin/build",
+    "dev": "./bin/dev",
+    "test": "./bin/test",
+    "prebuild": "./bin/prebuild",
+    "lint": "./bin/lint",
+    "lint:fix": "tslint --fix '(lib|test)/**/*.ts{,x}'"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.0",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
@@ -33,6 +38,8 @@
     "rollup": "^1.16.7",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.1.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-typescript": "^1.0.1",
     "ts-jest": "^23.10.5",
     "tslib": "^1.10.0",
@@ -44,18 +51,26 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "type": "types",
   "jest": {
-    "roots": ["<rootDir>/src"],
+    "roots": [
+      "<rootDir>/src"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-    "moduleFileExtensions": ["ts", "tsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ]
   }
 }

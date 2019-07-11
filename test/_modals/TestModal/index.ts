@@ -1,1 +1,0 @@
-export {TestModal} from './TestModal'

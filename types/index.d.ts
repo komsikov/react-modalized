@@ -7,7 +7,7 @@ export type ModalProps<P = any> = {[key: string]: P}
 
 export type ModalsContextType = {
   showModal?: (modal: string, modalProps: ModalProps) => void
-  closeModal?: (modal: string) => void
+  closeModal?: (modal?: string) => void
 }
 
 export type ModalList = {[key: string]: ComponentType}
@@ -36,7 +36,7 @@ interface ModalsProviderImpl {
 
 export type ModalsProps = {
   showModal: (modal: string,modalProps: ModalProps) => void
-  closeModal: (modal: string) => void
+  closeModal: (modal?: string) => void
 }
   
 type WithModalConfig = {

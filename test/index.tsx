@@ -1,6 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {RootComponent} from './RootContainer'
+import {ModalsProvider} from 'lib'
+import {modals} from './modals'
+import {Root} from './Root'
 
 
-ReactDOM.render(<RootComponent />, document.getElementById('app'))
+ReactDOM.render((
+  <ModalsProvider modals={modals}>
+    <Root />
+  </ModalsProvider>
+),
+document.getElementById('lib-test-root'))
