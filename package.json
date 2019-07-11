@@ -10,40 +10,54 @@
   "keywords": [
     "react",
     "modal",
-    "javascript"
+    "modals",
+    "javascript",
+    "js"
   ],
-  "main": "src/lib/index.ts",
+  "main": "dist/react-modalized.cjs.js",
+  "module": "dist/react-modalized.esm.js",
+  "browser": "dist/react-modalized.umd.js",
   "author": "kddaddy",
   "bugs": {
     "url": "https://github.com/kddaddy/react-modalized/issues"
   },
   "homepage": "https://github.com/kddaddy/react-modalized",
   "scripts": {
-    "build:dev": "tsc",
-    "build:prod": "tsc",
-    "test": "jest",
-    "lint": "tslint 'src/**/*.ts{,x}'",
-    "lint:fix": "tslint --fix 'src/**/*.ts{,x}'"
+    "build": "./bin/build",
+    "dev": "./bin/dev",
+    "test": "./bin/test",
+    "prebuild": "./bin/prebuild",
+    "lint": "./bin/lint",
+    "lint:fix": "tslint --fix '(lib|test)/**/*.ts{,x}'"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.0",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
     "jest": "^24.7.1",
+    "rollup": "^1.16.7",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.1.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-typescript": "^1.0.1",
     "ts-jest": "^23.10.5",
+    "tslib": "^1.10.0",
     "tslint": "5.12.1",
     "tslint-config-airbnb": "5.11.1",
     "tslint-import-rules": "0.3.0",
     "tslint-no-circular-imports": "^0.6.2",
     "tslint-react": "^4.0.0",
-    "typescript": "^3.4.4"
+    "typescript": "^3.5.3"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
+  "files": [
+    "dist"
+  ],
+  "type": "types",
   "jest": {
     "roots": [
       "<rootDir>/src"

@@ -1,5 +1,5 @@
-import {ModalList} from '../../lib'
 import {TestModal} from './TestModal'
+import {ModalList} from 'types'
 
 
 export const modals: ModalList = {

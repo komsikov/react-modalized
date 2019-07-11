@@ -1,30 +1,8 @@
-import React, {Component, ComponentType, ReactNode, CSSProperties} from 'react'
-import {ModalsContext, ModalProps} from './ModalsContext'
+import React, {Component, ReactNode, CSSProperties} from 'react'
 
+import {ModalsContext} from './ModalsContext'
+import {ModalProps, RefType, ModalsProviderImpl, State, Props} from 'types'
 
-export type ModalList = {[key: string]: ComponentType}
-export type ModalState = {[key: string]: boolean}
-
-export type RefType = React.RefObject<HTMLDivElement>
-
-type Props = {
-  modals: ModalList,
-  context?: React.Context<{}>,
-}
-
-type State = {
-  modals: ModalState,
-  modalsProps: ModalProps,
-}
-
-interface ModalsProviderImpl {
-  modalNode: RefType;
-  showModal(modal: string, modalProps: ModalProps): void;
-  closeModal(modal: string): void;
-  resetModals(): void;
-  handleOutsideClick(e: Event): void;
-  createModalsContainer(): (props: {children: ReactNode}) => React.ReactNode;
-}
 
 export class ModalsProvider extends Component<Props, State> implements ModalsProviderImpl {
   modalNode: RefType = React.createRef()
@@ -99,16 +77,11 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
   }
 
   handleOutsideClick = (e: Event) => {
-    // TODO: придумать как не закрывать react-select и react-date-picker, пока костыль
     // @ts-ignore
-    if (this.modalNode.current && !this.modalNode.current.contains(e.target)
-      // @ts-ignore
-      && !e.target.classList.contains('react-select__option')
-      // @ts-ignore
-      && e.target.parentElement && !e.target.parentElement('.react-calendar__tile')) {
+    if (this.modalNode.current && !this.modalNode.current.contains(e.target)) {
       this.resetModals()
     }
-    // @ts-ignore
+
     if (this.modalNode.current === e.target) {
       this.resetModals()
     }
@@ -116,7 +89,6 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
 
   createModalsContainer = () => {
     return ({children}: {children: ReactNode}) => (
-      // @ts-ignore
       <div ref={this.modalNode} style={this.style}>{children}</div>
     )
   }

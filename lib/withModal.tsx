@@ -1,16 +1,8 @@
 import React, {ReactType} from 'react'
-import {ModalsContext, ModalsContextType, ModalProps} from './ModalsContext'
 
+import {ModalsContext} from './ModalsContext'
+import {ModalProps, ModalsContextType, WithModalConfig} from 'types'
 
-export type ModalsProps = {
-  showModal: (modal: string,modalProps: ModalProps) => void
-  closeModal: (modal: string) => void
-}
-
-type WithModalConfig = {
-  showModalCustomName?: string,
-  closeModalCustomName?: string,
-}
 
 const setConfig = (context: ModalsContextType, {
   showModalCustomName = 'showModal',
@@ -21,7 +13,7 @@ const setConfig = (context: ModalsContextType, {
   [closeModalCustomName]: context.closeModal,
 })
 
-export const withModal = (config: WithModalConfig) => (Component: ReactType) => (props: ModalProps) => (
+export const withModal = (config?: WithModalConfig) => (Component: ReactType) => (props: ModalProps) => (
   <ModalsContext.Consumer>
     {context => <Component {...props} {...setConfig(context, config)} />}
   </ModalsContext.Consumer>

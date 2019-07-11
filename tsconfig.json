@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./dist",
     "sourceMap": true,
     "noImplicitAny": true,
     "resolveJsonModule": true,
@@ -26,36 +26,13 @@
     "baseUrl": ".",
     "rootDir": ".",
     "types": ["jest"],
-    "typeRoots": [
-      "./src/interfaces/**/*",
-      "./src/types/**/*",
-      "node_modules/@types"
-    ],
+    "typeRoots": ["types", "node_modules/@types"],
     "paths": {
+      "src": ["src"],
       "lib": ["lib"],
-      "interfaces": ["src/interfaces"],
-      "types": ["src/types"],
-      "selectors": ["src/selectors"],
-      "utilities": ["src/utils"],
-      "images": ["src/assets/images"],
-      "styles": ["src/assets/styles"],
-      "services": ["src/services"],
-      "actions": ["src/actions"],
-      "validations": ["src/_validations"],
-      "constants": ["src/constants"],
-      "containers": ["src/containers"],
-      "components": ["src/components"],
-      "appComponents": ["src/components/_app"],
-      "formComponents": ["src/components/_Form"]
+      "types": ["types"]
     }
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "built",
-    "build",
-    "dist"
-  ]
+  "include": ["lib/**/*", "test/**/*"],
+  "exclude": ["node_modules", "built", "build", "dist"]
 }
