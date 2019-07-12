@@ -1,3 +1,4 @@
 #!/bin/bash
 
-rollup -c -w
+
+npm publish
