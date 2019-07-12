@@ -7,7 +7,13 @@
     "url": "https://github.com/kddaddy/react-modalize.git"
   },
   "license": "MIT",
-  "keywords": ["react", "modal", "modals", "javascript", "js"],
+  "keywords": [
+    "react",
+    "modal",
+    "modals",
+    "javascript",
+    "js"
+  ],
   "main": "dist/react-modalized.cjs.js",
   "module": "dist/react-modalized.esm.js",
   "browser": "dist/react-modalized.umd.js",
@@ -48,14 +54,23 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "type": "types",
   "jest": {
-    "roots": ["<rootDir>/src"],
+    "roots": [
+      "<rootDir>/src"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-    "moduleFileExtensions": ["ts", "tsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ]
   }
 }
