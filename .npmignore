@@ -11,4 +11,4 @@ config.gypi
 CVS
 npm-debug.log
 dist/**
-!dist/react-modalized.(umd|cjs|esm|es).js
+dist

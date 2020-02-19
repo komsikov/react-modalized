@@ -5,7 +5,7 @@
 
 Modals system rendering for react applications
 
-![react-modalized](./modalize.jpg)
+![react-modalized](./modalize.svg)
 
 ## Getting started
 
