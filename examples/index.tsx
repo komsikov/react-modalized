@@ -7,7 +7,7 @@ import HooksExample from './HooksExample'
 
 const ExamplesPage = () => (
   <ModalsProvider modals={modals}>
-    <div>
+    <div style={{display: 'flex'}}>
       <ClassesExaple />
       <HooksExample />
     </div>

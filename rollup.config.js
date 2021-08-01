@@ -60,8 +60,7 @@ const commonPlugins = [
 const buildLibConfig = {
   input: 'lib/index.ts',
   output: {
-    name: 'react-modalized',
-    file: pkg.browser,
+    dir: 'dist',
     format: 'umd',
   },
   external: ['React', 'ReactDOM'],

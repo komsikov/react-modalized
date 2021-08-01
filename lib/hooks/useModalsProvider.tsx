@@ -73,7 +73,7 @@ const useModalsProvider = ({ modals }: Props) => {
         [modal]: modalProps,
       }
     }))
-  }, []);
+  }, [modals]);
 
   const closeModal = useCallback((modal: string) => {
     if (!modals[modal]) {
@@ -91,7 +91,7 @@ const useModalsProvider = ({ modals }: Props) => {
         [modal]: undefined,
       }
     }))
-  }, []);
+  }, [modals]);
 
   const resetModals = useCallback(() => {
     setState({
@@ -117,13 +117,11 @@ const useModalsProvider = ({ modals }: Props) => {
         })
       }
     </ModalsContainer>
-  ), [state, modalNode, closeModal]);
+  ), [modals, state, modalNode, closeModal]);
 
 
   const Component: FC = useCallback(({ children }) => (
-    <ModalsContext.Provider
-      value={{ showModal, closeModal }}
-    >
+    <ModalsContext.Provider value={{ showModal, closeModal }}>
       {children}
       <div id="modals-root">
         {showedModals}

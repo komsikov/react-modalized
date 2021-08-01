@@ -12,3 +12,9 @@ Modals system rendering for react applications
 ```bash
   npm install react-modalized
 ```
+
+## Update dependencies
+
+```bash
+  npx -p npm-check-updates -c ncu
+```

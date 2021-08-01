@@ -8,6 +8,7 @@ export type ModalsContextType = {
 }
 
 export type ModalList = {[key: string]: ElementType}
+
 export type ModalState = {[key: string]: boolean}
 
 export type RefType = React.RefObject<HTMLDivElement>
