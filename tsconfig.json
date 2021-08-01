@@ -30,6 +30,7 @@
     "paths": {
       "src": ["src"],
       "lib": ["lib"],
+      "examples": ["examples"],
       "types": ["types"]
     }
   },
