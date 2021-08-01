@@ -1,8 +1,15 @@
-import React, {Component, ReactNode, CSSProperties} from 'react'
+import React, { Component, CSSProperties, FC } from 'react'
+import { ModalsContext } from 'lib/ModalsContext'
+import { ModalProps, RefType, ModalsProviderImpl, State, Props } from 'types'
 
-import {ModalsContext} from './ModalsContext'
-import {ModalProps, RefType, ModalsProviderImpl, State, Props} from 'types'
+type ModalsContainerProps = {
+  styles: CSSProperties,
+  modalNode: RefType,
+}
 
+const ModalsContainer: FC<ModalsContainerProps> = ({ children, styles, modalNode }) => (
+  <div ref={modalNode} style={styles}>{children}</div>
+)
 
 export class ModalsProvider extends Component<Props, State> implements ModalsProviderImpl {
   modalNode: RefType = React.createRef()
@@ -29,8 +36,7 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
 
   showModal = (modal: string, modalProps: ModalProps) => {
     if (!this.props.modals[modal]) {
-      console.warn(`no modal whith name: ${modal}!`)
-      return
+      return console.error(`No modal whith name: ${modal}!`)
     }
     
     this.setState((prevState: State) => ({
@@ -44,7 +50,7 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
       }
     }))
 
-    document.addEventListener('click', this.handleOutsideClick, false)
+    document.addEventListener('click', this.handleOutsideClick, true)
   }
 
   closeModal = (modal: string) => {
@@ -87,18 +93,9 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
     }
   }
 
-  createModalsContainer = () => {
-    return ({children}: {children: ReactNode}) => (
-      <div ref={this.modalNode} style={this.style}>{children}</div>
-    )
-  }
-
   render() {
-    const Context = this.props.context || ModalsContext
-    const ModalsContainer = this.createModalsContainer()
-
     return(
-      <Context.Provider
+      <ModalsContext.Provider
         value={{
           showModal: this.showModal, closeModal: this.closeModal
         }}
@@ -107,7 +104,7 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
         <div id="modals-root">
           {
             Object.keys(this.state.modals).find(m => this.state.modals[m]) && (
-              <ModalsContainer>
+              <ModalsContainer styles={this.style} modalNode={this.modalNode}>
                 {
                   Object.keys(this.props.modals).map((modal, i) => {
                     const Modal = this.props.modals[modal]
@@ -122,7 +119,7 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
             )
           }
         </div>
-      </Context.Provider>
+      </ModalsContext.Provider>
     )
   }
 }

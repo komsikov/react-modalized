@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React from 'react'
 import {withModal} from 'lib'
 import {ModalList, ModalsProps} from 'types'
 
@@ -9,19 +9,15 @@ type Props = {
 
 const modalContent = 'ContentContent ContentContentContentContent ContentContentContentContent ContentContentContent'
 
-const ContentComponent = withModal()((props: Props) => (
+const ClassesExample = withModal()(({ showModal }: Props) => (
   <div>
     <button
       className="btn-open"
-      onClick={() => props.showModal('TEST_MODAL', {title: 'Test modal', content: modalContent})}
+      onClick={() => showModal('TEST_MODAL', { title: 'Hocs modal', content: modalContent })}
     >
-      Show me modal
+      classes based modal
     </button>
   </div>
 ))
 
-export class Root extends PureComponent<{}, {}> {
-  render() {
-    return <ContentComponent />
-  }
-}
+export default ClassesExample;

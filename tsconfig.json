@@ -33,6 +33,6 @@
       "types": ["types"]
     }
   },
-  "include": ["lib/**/*", "test/**/*"],
+  "include": ["lib/**/*", "examples/**/*"],
   "exclude": ["node_modules", "built", "build", "dist"]
 }

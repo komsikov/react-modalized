@@ -1,26 +1,20 @@
-import React, {Component, ComponentType, ReactNode, CSSProperties} from 'react'
+import React, { ElementType, ReactNode } from 'react'
 
-
-// tslint:disable:no-any
 export type ModalProps<P = any> = {[key: string]: P}
-// tslint:enable:no-any
 
 export type ModalsContextType = {
-  showModal?: (modal: string, modalProps: ModalProps) => void
-  closeModal?: (modal?: string) => void
+  showModal: (modal: string, modalProps: ModalProps) => void
+  closeModal: (modal?: string) => void
 }
 
-export type ModalList = {[key: string]: ComponentType}
+export type ModalList = {[key: string]: ElementType}
 export type ModalState = {[key: string]: boolean}
 
 export type RefType = React.RefObject<HTMLDivElement>
 
-type Props = {
-  modals: ModalList,
-  context?: React.Context<{}>,
-}
+export type Props = { modals: ModalList }
 
-type State = {
+export type State = {
   modals: ModalState,
   modalsProps: ModalProps,
 }
@@ -31,15 +25,14 @@ interface ModalsProviderImpl {
   closeModal(modal: string): void;
   resetModals(): void;
   handleOutsideClick(e: Event): void;
-  createModalsContainer(): (props: {children: ReactNode}) => React.ReactNode;
 }
 
 export type ModalsProps = {
-  showModal: (modal: string,modalProps: ModalProps) => void
+  showModal: (modal: string, modalProps: ModalProps) => void
   closeModal: (modal?: string) => void
 }
   
-type WithModalConfig = {
+export type WithModalConfig = {
   showModalCustomName?: string,
   closeModalCustomName?: string,
 }
