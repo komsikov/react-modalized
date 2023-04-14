@@ -52,6 +52,13 @@ const commonPlugins = [
         'createContext',
         'isValidElement',
         'isValidElementType',
+        'useCallback',
+        'useMemo',
+        'useContext',
+        'useState',
+        'useEffect',
+        'useRef',
+        'lazy',
       ],
     },
   }),
@@ -60,6 +67,7 @@ const commonPlugins = [
 const buildLibConfig = {
   input: 'lib/index.ts',
   output: {
+    name: 'react-modalazed',
     dir: 'dist',
     format: 'umd',
   },
