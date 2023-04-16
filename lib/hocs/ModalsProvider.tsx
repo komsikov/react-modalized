@@ -13,20 +13,14 @@ const ModalsContainer = ({ children, styles, modalNode }: PropsWithChildren<Moda
 
 const modalsProviderStyles: { [key: string]: CSSProperties } = {
   style: {
-    // width: '100%',
-    // height: '100%',
-    // maxHeight: '100vh',
-    // background: 'rgba(0, 0, 0, 0.5)',
-    // // position: 'fixed',
-    // zIndex: 10,
-  },
-  modalsRoot: {
     position: 'absolute',
-    width: '100%',
-    height: '100%',
     top: 0,
     left: 0,
-  }
+    width: '100%',
+    height: '100%',
+    maxHeight: '100vh',
+    zIndex: 10,
+  },
 }
 
 export class ModalsProvider extends Component<PropsWithChildren<Props>, State> implements ModalsProviderImpl {
@@ -111,7 +105,7 @@ export class ModalsProvider extends Component<PropsWithChildren<Props>, State> i
         value={this.providerValue()}
       >
         {this.props.children}
-        <div id="modals-root" style={modalsProviderStyles.modalsRoot}>
+        <div id="modals-root">
           {
             Object.keys(this.state.modals).find(m => this.state.modals[m]) && (
               <ModalsContainer styles={modalsProviderStyles.style} modalNode={this.modalNode}>
