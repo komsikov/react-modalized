@@ -4,7 +4,7 @@ import { ModalsContext } from '../ModalsContext'
 import { ModalProps, ModalsContextType, WithModalConfig } from 'types'
 
 
-const setConfig = (context: ModalsContextType, {
+const setConfig = (context: Partial<ModalsContextType>, {
   showModalCustomName = 'showModal',
   closeModalCustomName = 'closeModal',
 }: WithModalConfig = {}) => ({

@@ -2,16 +2,20 @@ import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import typescript from 'rollup-plugin-typescript';
+import ts from '@rollup/plugin-typescript';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import progress from 'rollup-plugin-progress';
 import { visualizer } from 'rollup-plugin-visualizer';
 import cleanup from 'rollup-plugin-cleanup';
 import { copyFile } from 'fs/promises';
+import typescript from 'typescript';
 import { resolve } from 'path';
+import dotenv from 'dotenv';
 
-import pkg from './package.json';
+dotenv.config();
+
+// import pkg from './package.json';
 
 const copyPlugin = ({ paths, dir }) => ({
   name: 'copy-plugin',
@@ -19,7 +23,7 @@ const copyPlugin = ({ paths, dir }) => ({
     if (!error) {
       try {
 
-        paths.forEach((path) => copyFile(resolve(__dirname, path), dir))
+        paths.forEach((path) => copyFile(resolve('./', path), dir))
       } catch (error) {
         throw new Error(error);
       }
@@ -28,10 +32,20 @@ const copyPlugin = ({ paths, dir }) => ({
 });
 
 const production = !process.env.ROLLUP_WATCH
+console.info('PIZZZZZDA', production)
 
 const commonPlugins = [
   replace({'process.env.NODE_ENV': JSON.stringify('production')}),
-  typescript(),
+  // ts({
+  //   typescript,
+  //   tsconfig: './tsconfig.json',
+  //   sourceMap: 'inline',
+  // }),
+  ts({
+    typescript,
+    tsconfig: './tsconfig.json',
+    sourceMap: true,
+  }),
   nodeResolve(),
   progress(),
   commonjs({
@@ -55,6 +69,7 @@ const commonPlugins = [
         'useCallback',
         'useMemo',
         'useContext',
+        'Suspense',
         'useState',
         'useEffect',
         'useRef',
@@ -67,9 +82,10 @@ const commonPlugins = [
 const buildLibConfig = {
   input: 'lib/index.ts',
   output: {
-    name: 'react-modalazed',
+    name: 'dist/react-modalazed',
     dir: 'dist',
     format: 'umd',
+    globals: ['react'],
   },
   external: ['React', 'ReactDOM'],
   plugins: [
@@ -82,8 +98,8 @@ const buildLibConfig = {
 
 const buildExamplesConfig = {
   input: 'examples/index.tsx',
-  experimentalCodeSplitting: true,
   output: {
+    name: 'dist/react-modalazed-example',
     dir: 'dist',
     format: 'esm',
     sourcemap: true,

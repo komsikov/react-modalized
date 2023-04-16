@@ -1,11 +1,11 @@
 import React, {
-  FC,
   useRef,
   useMemo,
   useState,
   RefObject,
   useCallback,
   CSSProperties,
+  PropsWithChildren,
 } from 'react'
 import { ModalsContext } from 'lib/ModalsContext'
 import {
@@ -21,9 +21,9 @@ type ModalsContainerProps = {
   modalNode: RefObject<HTMLDivElement>,
 }
 
-const ModalsContainer: FC<ModalsContainerProps> = ({
+const ModalsContainer = ({
   children, styles, modalNode,
-}) => (
+}: PropsWithChildren<ModalsContainerProps>) => (
   <div ref={modalNode} style={styles}>
     {children}
   </div>
@@ -38,13 +38,14 @@ const getInitialModals = (modals: ModalList) => {
 };
 
 const initialModalsContainerStyles: CSSProperties = {
-  width: '100%',
-  height: '100%',
-  maxHeight: '100vh',
-  background: 'rgba(0, 0, 0, 0.5)',
-  position: 'fixed',
-  zIndex: 10,
+  // width: '100%',
+  // height: '100%',
+  // maxHeight: '100vh',
+  // background: 'rgba(0, 0, 0, 0.5)',
+  // position: 'fixed',
+  // zIndex: 10,
 };
+
 
 const useModalsProvider = ({ modals }: Props) => {
   const modalNode = useRef<HTMLDivElement>(null)
@@ -100,16 +101,21 @@ const useModalsProvider = ({ modals }: Props) => {
     })
   }, [modals]);
 
+  // TODO: fix types
+  // @ts-ignore
   const showedModals = useMemo(() => Object.keys(state.modals).find((m) => state.modals[m]) && (
     <ModalsContainer styles={initialModalsContainerStyles} modalNode={modalNode}>
       {
         Object.keys(modals).map((modal, i) => {
+          // @ts-ignore
           const Modal = state.modals[modal]
           const { modalsProps, modals } = state
           
+          // @ts-ignore
           return modals[modal] && (
             <Modal
-              key={i}
+              key={modal}
+              // @ts-ignore
               {...modalsProps[modal]}
               closeModal={() => closeModal(modal)}
             />
@@ -120,7 +126,7 @@ const useModalsProvider = ({ modals }: Props) => {
   ), [modals, state, modalNode, closeModal]);
 
 
-  const Component: FC = useCallback(({ children }) => (
+  const Component = useCallback(({ children }: PropsWithChildren) => (
     <ModalsContext.Provider value={{ showModal, closeModal }}>
       {children}
       <div id="modals-root">

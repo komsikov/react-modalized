@@ -1,4 +1,4 @@
-import React, { Component, CSSProperties, FC } from 'react'
+import React, { Component, CSSProperties, PropsWithChildren } from 'react'
 import { ModalsContext } from 'lib/ModalsContext'
 import { ModalProps, RefType, ModalsProviderImpl, State, Props } from 'types'
 
@@ -7,30 +7,38 @@ type ModalsContainerProps = {
   modalNode: RefType,
 }
 
-const ModalsContainer: FC<ModalsContainerProps> = ({ children, styles, modalNode }) => (
+const ModalsContainer = ({ children, styles, modalNode }: PropsWithChildren<ModalsContainerProps>) => (
   <div ref={modalNode} style={styles}>{children}</div>
 )
 
-export class ModalsProvider extends Component<Props, State> implements ModalsProviderImpl {
+const modalsProviderStyles: { [key: string]: CSSProperties } = {
+  style: {
+    // width: '100%',
+    // height: '100%',
+    // maxHeight: '100vh',
+    // background: 'rgba(0, 0, 0, 0.5)',
+    // // position: 'fixed',
+    // zIndex: 10,
+  },
+  modalsRoot: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+  }
+}
+
+export class ModalsProvider extends Component<PropsWithChildren<Props>, State> implements ModalsProviderImpl {
   modalNode: RefType = React.createRef()
   state: State
-  style: CSSProperties
-
+  
   constructor(props: Props) {
     super(props)
     
     this.state = {
       modals: Object.keys(props.modals).reduce((a, modal) => Object.assign({[modal]: false}, a), {}),
       modalsProps: {},
-    }
-
-    this.style = {
-      width: '100%',
-      height: '100%',
-      maxHeight: '100vh',
-      background: 'rgba(0, 0, 0, 0.5)',
-      position: 'fixed',
-      zIndex: 10,
     }
   }
 
@@ -93,25 +101,27 @@ export class ModalsProvider extends Component<Props, State> implements ModalsPro
     }
   }
 
+  providerValue = () => ({
+    showModal: this.showModal, closeModal: this.closeModal
+  });
+
   render() {
     return(
       <ModalsContext.Provider
-        value={{
-          showModal: this.showModal, closeModal: this.closeModal
-        }}
+        value={this.providerValue()}
       >
         {this.props.children}
-        <div id="modals-root">
+        <div id="modals-root" style={modalsProviderStyles.modalsRoot}>
           {
             Object.keys(this.state.modals).find(m => this.state.modals[m]) && (
-              <ModalsContainer styles={this.style} modalNode={this.modalNode}>
+              <ModalsContainer styles={modalsProviderStyles.style} modalNode={this.modalNode}>
                 {
                   Object.keys(this.props.modals).map((modal, i) => {
                     const Modal = this.props.modals[modal]
                     const {modalsProps, modals} = this.state
                     
                     return modals[modal]
-                      ? <Modal key={i} {...modalsProps[modal]} closeModal={() => this.closeModal(modal)} />
+                      ? <Modal key={modal} {...modalsProps[modal]} closeModal={() => this.closeModal(modal)} />
                       : null
                   })
                 }
