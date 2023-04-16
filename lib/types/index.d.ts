@@ -1,11 +1,13 @@
 import React, { ElementType, ReactNode } from 'react'
 
-export type ModalProps<P = any> = {[key: string]: P}
+export type ModalProps<P extends object = any> = { [key: string]: P };
 
-export type ModalsContextType = {
-  showModal: (modal: string, modalProps: ModalProps) => void
-  closeModal: (modal?: string) => void
-}
+export type ModalsContextType<N extends string = string, P extends object = ModalProps> = {
+  showModal: (modal: N, modalProps?: P) => void,
+  closeModal: (modal: N) => void,
+  resetModals: () => void,
+  getState: () => State,
+};
 
 export type ModalList = {[key: string]: ElementType}
 
@@ -15,10 +17,10 @@ export type RefType = React.RefObject<HTMLDivElement>
 
 export type Props = { modals: ModalList }
 
-export type State = {
+export type State<P extends object = any> = {
   modals: ModalState,
-  modalsProps: ModalProps,
-}
+  modalsProps: ModalProps<P>,
+};
 
 interface ModalsProviderImpl {
   modalNode: RefType;

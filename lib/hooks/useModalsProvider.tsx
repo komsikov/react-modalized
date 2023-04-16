@@ -1,141 +1,100 @@
-import React, {
+import {
   useRef,
-  useMemo,
   useState,
-  RefObject,
   useCallback,
-  CSSProperties,
-  PropsWithChildren,
 } from 'react'
-import { ModalsContext } from 'lib/ModalsContext'
 import {
   Props,
   State,
   ModalList,
   ModalProps,
 } from 'types'
-import { useClickOutside } from 'lib/useClickOutside'
+import { useClickOutside } from 'lib/utils/useClickOutside'
 
-type ModalsContainerProps = {
-  styles: CSSProperties,
-  modalNode: RefObject<HTMLDivElement>,
-}
+const getInitialState = (modals: ModalList) => {
+  const initialModals = Object.keys(modals)
+    .reduce((acc, modal) => ({ ...acc, [modal]: false }), {});
 
-const ModalsContainer = ({
-  children, styles, modalNode,
-}: PropsWithChildren<ModalsContainerProps>) => (
-  <div ref={modalNode} style={styles}>
-    {children}
-  </div>
-)
-
-const getInitialModals = (modals: ModalList) => {
-  const modalNames = Object.keys(modals);
-    
-  return modalNames.reduce((acc, modal) => (
-    Object.assign({[modal]: false}, acc)
-  ), {});
+  return {
+    modals: initialModals,
+    modalsProps: {},
+  };
 };
-
-const initialModalsContainerStyles: CSSProperties = {
-  // width: '100%',
-  // height: '100%',
-  // maxHeight: '100vh',
-  // background: 'rgba(0, 0, 0, 0.5)',
-  // position: 'fixed',
-  // zIndex: 10,
-};
-
 
 const useModalsProvider = ({ modals }: Props) => {
   const modalNode = useRef<HTMLDivElement>(null)
-  const [state, setState] = useState({
-      modals: getInitialModals(modals),
-      modalsProps: {},
-  });
+  const [state, setState] = useState<State>(() => getInitialState(modals));
 
   useClickOutside(
     modalNode,
     () => resetModals()
   );
 
-  const showModal = useCallback((modal: string, modalProps: ModalProps) => {
-    if (!modals[modal]) {
-      return console.error(`No modal whith name: ${modal}!`)
+  const showModal = useCallback((modalKey: string, modalProps: ModalProps) => {
+    if (!modals[modalKey]) {
+      return console.error(`No modal with name: ${modalKey}!`)
     }
-    
-    setState((prevState: State) => ({
-      modals: {
-        ...prevState.modals,
-        [modal]: true,
-      },
-      modalsProps: {
-        ...prevState.modalsProps,
-        [modal]: modalProps,
-      }
-    }))
-  }, [modals]);
 
-  const closeModal = useCallback((modal: string) => {
-    if (!modals[modal]) {
-      console.warn(`no modal whith name: ${modal}!`)
-      return
+    if (!Object.keys(state.modals).includes(modalKey)) {
+      throw new Error(`No modal with name: ${modalKey}!`);
     }
+
+    if (state.modals[modalKey]) {
+      // eslint-disable-next-line no-console
+      console.error(new Error('Modal already open'));
+      return;
+    }
+
+    setState((prevState) => ({
+      modals: {
+        ...prevState.modals,
+        [modalKey]: true,
+      },
+      modalsProps: {
+        ...prevState.modalsProps,
+        [modalKey]: modalProps,
+      }
+    }));
+  }, [modals, state]);
+
+  const closeModal = useCallback((modalKey: string) => {
+    // if (!modals[modal]) {
+    //   console.warn(`no modal with name: ${modal}!`)
+    //   return
+    // }
+    if (!Object.keys(state.modals).includes(modalKey)) {
+      throw new Error(`No modal with name: ${modalKey}!`);
+    }
+
+    // TODO!: МОДАЛКА НЕ ЗАКРЫВАЕТСЯ КОГДА пропсой передается
+    // ф-ция в которой используется closeModal
+    // if (!state.modals[modalName]) {
+    //   // eslint-disable-next-line no-console
+    //   console.error(new Error('Modal already close'));
+    //   return;
+    // }
     
     setState((prevState: State) => ({
       modals: {
         ...prevState.modals,
-        [modal]: false,
+        [modalKey]: false,
       },
       modalsProps: {
         ...prevState.modalsProps,
-        [modal]: undefined,
+        [modalKey]: undefined,
       }
     }))
-  }, [modals]);
+  }, [modals, state]);
 
   const resetModals = useCallback(() => {
-    setState({
-      modals: getInitialModals(modals),
-      modalsProps: {},
-    })
+    setState(() => getInitialState(modals));
   }, [modals]);
 
-  // TODO: fix types
-  // @ts-ignore
-  const showedModals = useMemo(() => Object.keys(state.modals).find((m) => state.modals[m]) && (
-    <ModalsContainer styles={initialModalsContainerStyles} modalNode={modalNode}>
-      {
-        Object.keys(modals).map((modal, i) => {
-          // @ts-ignore
-          const Modal = state.modals[modal]
-          const { modalsProps, modals } = state
-          
-          // @ts-ignore
-          return modals[modal] && (
-            <Modal
-              key={modal}
-              // @ts-ignore
-              {...modalsProps[modal]}
-              closeModal={() => closeModal(modal)}
-            />
-          );
-        })
-      }
-    </ModalsContainer>
-  ), [modals, state, modalNode, closeModal]);
+  const getState = useCallback(() => state, [state]);
 
-
-  const Component = useCallback(({ children }: PropsWithChildren) => (
-    <ModalsContext.Provider value={{ showModal, closeModal }}>
-      {children}
-      <div id="modals-root">
-        {showedModals}
-      </div>
-    </ModalsContext.Provider>
-  ), [showedModals]);
-
-  return Component;
+  return {
+    showModal, closeModal, resetModals, getState,
+  };
 }
 
 export { useModalsProvider }

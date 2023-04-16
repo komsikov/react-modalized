@@ -22,7 +22,6 @@ const copyPlugin = ({ paths, dir }) => ({
   buildEnd (error) {
     if (!error) {
       try {
-
         paths.forEach((path) => copyFile(resolve('./', path), dir))
       } catch (error) {
         throw new Error(error);
@@ -32,15 +31,9 @@ const copyPlugin = ({ paths, dir }) => ({
 });
 
 const production = !process.env.ROLLUP_WATCH
-console.info('PIZZZZZDA', production)
 
 const commonPlugins = [
   replace({'process.env.NODE_ENV': JSON.stringify('production')}),
-  // ts({
-  //   typescript,
-  //   tsconfig: './tsconfig.json',
-  //   sourceMap: 'inline',
-  // }),
   ts({
     typescript,
     tsconfig: './tsconfig.json',
@@ -74,6 +67,7 @@ const commonPlugins = [
         'useEffect',
         'useRef',
         'lazy',
+        'memo',
       ],
     },
   }),
@@ -82,7 +76,7 @@ const commonPlugins = [
 const buildLibConfig = {
   input: 'lib/index.ts',
   output: {
-    name: 'dist/react-modalazed',
+    name: 'dist/react-modalized',
     dir: 'dist',
     format: 'umd',
     globals: ['react'],
@@ -90,8 +84,11 @@ const buildLibConfig = {
   external: ['React', 'ReactDOM'],
   plugins: [
     ...commonPlugins,
-    visualizer(),
     cleanup(),
+    production && visualizer({
+      filename: 'dist/stats.html',
+      // template: 'network',
+    }),
     production && terser(),
   ],
 };
@@ -99,7 +96,7 @@ const buildLibConfig = {
 const buildExamplesConfig = {
   input: 'examples/index.tsx',
   output: {
-    name: 'dist/react-modalazed-example',
+    name: 'dist/react-modalized-example',
     dir: 'dist',
     format: 'esm',
     sourcemap: true,

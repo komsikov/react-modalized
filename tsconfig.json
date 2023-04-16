@@ -26,12 +26,12 @@
     "baseUrl": ".",
     "rootDir": ".",
     "types": ["jest"],
-    "typeRoots": ["types", "node_modules/@types"],
+    "typeRoots": ["lib/types", "node_modules/@types"],
     "paths": {
       "src": ["src"],
       "lib": ["lib"],
       "examples": ["examples"],
-      "types": ["types"]
+      "types": ["lib/types"]
     }
   },
   "include": ["lib/**/*", "examples/**/*"],

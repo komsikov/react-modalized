@@ -1,18 +1,18 @@
 import { useContext } from 'react'
-import { ModalsContext } from 'lib/ModalsContext'
+import Context from 'lib/context'
 import { ModalsContextType } from 'types';
 
-export const useModal = () => {
-  const modalsContext = useContext(ModalsContext);
+export const useModal = <N extends string = string, P extends object = Record<string, any>>() => {
+  const modalsContext = useContext(Context);
 
   if (!Object.keys(modalsContext).length) {
-    console.error('Context not provided');
+    console.error('Context isn\'t provided');
 
     return {
       showModal: () => null,
       closeModal: () => null,
     }
   }
-  
-  return modalsContext as Required<ModalsContextType>;
+
+  return modalsContext as Required<ModalsContextType<N, P>>;
 };

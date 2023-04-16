@@ -1,6 +1,6 @@
 import React, { ElementType } from 'react'
 
-import { ModalsContext } from '../ModalsContext'
+import Context from '../context'
 import { ModalProps, ModalsContextType, WithModalConfig } from 'types'
 
 
@@ -14,12 +14,12 @@ const setConfig = (context: Partial<ModalsContextType>, {
 })
 
 export const withModal = (config?: WithModalConfig) => (Component: ElementType) => (props: ModalProps) => (
-  <ModalsContext.Consumer>
+  <Context.Consumer>
     {(context) => (
       <Component
         {...props}
         {...setConfig(context, config)}
       />
     )}
-  </ModalsContext.Consumer>
+  </Context.Consumer>
 )

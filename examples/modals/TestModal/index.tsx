@@ -23,19 +23,20 @@ const testModalStyles: { [key: string]: CSSProperties } = {
     left: '50%',
     border: '1px solid black',
     borderRadius: '14px',
-    padding: '40px 32px'
+    padding: '40px 32px',
+    background: '#9695a1',
   }
 }
 
 const TestModal = ({ title, content, closeModal }: Props) => (
-  <div className="test-modal-overlay" style={testModalStyles.testModalOverlay}>
-    <div className="test-modal" style={testModalStyles.modal}>
-      <h2 className="test-modal__title">{title}</h2>
+  <div style={testModalStyles.testModalOverlay}>
+    <div style={testModalStyles.modal}>
+      <h2>{title}</h2>
       <p>{content}</p>
       <input type="text" />
-      <div className="test-modal__btn-group">
-        <button className="btn-send" onClick={() => closeModal()}>Send</button>
-        <button className="btn-no" onClick={() => closeModal()}>Close</button>
+      <div>
+        <button onClick={() => closeModal()}>Send</button>
+        <button onClick={() => closeModal()}>Close</button>
       </div>
     </div>
   </div>
