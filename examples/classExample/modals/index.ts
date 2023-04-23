@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { ModalList } from 'types'
+import { ModalList } from 'lib/types'
 
 
 const modals: ModalList = {

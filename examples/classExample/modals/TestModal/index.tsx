@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import { ModalsProps } from 'types'
+import { ModalsProps } from 'lib/types'
 
 type Props = {
   title: string,

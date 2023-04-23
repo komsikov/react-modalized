@@ -8,7 +8,7 @@ import {
   State,
   ModalList,
   ModalProps,
-} from 'types'
+} from 'lib/types'
 import { useClickOutside } from 'lib/utils/useClickOutside'
 
 const getInitialState = (modals: ModalList) => {

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import Context from 'lib/context'
-import { ModalsContextType } from 'types';
+import { ModalsContextType } from 'lib/types';
 
 export const useModal = <N extends string = string, P extends object = Record<string, any>>() => {
   const modalsContext = useContext(Context);

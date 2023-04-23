@@ -1,9 +1,9 @@
-var env = process.env
-var ADBLOCK = is(env.ADBLOCK)
-var CI = is(env.CI)
-var COLOR = is(env.npm_config_color)
-var DISABLE_OPENCOLLECTIVE = is(env.DISABLE_OPENCOLLECTIVE)
-var SILENT = !!~['silent', 'error', 'warn'].indexOf(env.npm_config_loglevel)
+const env = process.env
+const ADBLOCK = is(env.ADBLOCK)
+const CI = is(env.CI)
+const COLOR = is(env.npm_config_color)
+const DISABLE_OPENCOLLECTIVE = is(env.DISABLE_OPENCOLLECTIVE)
+const SILENT = !!~['silent', 'error', 'warn'].indexOf(env.npm_config_loglevel)
 
 function is(it) {
   return !!it && it !== '0' && it !== 'false'

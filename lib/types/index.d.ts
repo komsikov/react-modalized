@@ -1,4 +1,4 @@
-import React, { ElementType, ReactNode } from 'react'
+import React, { ElementType } from 'react'
 
 export type ModalProps<P extends object = any> = { [key: string]: P };
 

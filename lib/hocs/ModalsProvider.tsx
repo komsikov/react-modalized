@@ -1,6 +1,6 @@
 import React, { Component, CSSProperties, PropsWithChildren } from 'react'
 import Context from 'lib/context'
-import { ModalProps, RefType, ModalsProviderImpl, State, Props } from 'types'
+import { ModalProps, RefType, ModalsProviderImpl, State, Props } from 'lib/types'
 
 type ModalsContainerProps = {
   styles: CSSProperties,

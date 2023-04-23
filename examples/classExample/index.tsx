@@ -2,8 +2,7 @@ import React, { Suspense, CSSProperties } from 'react'
 import ReactDOM from 'react-dom'
 import { ModalsProvider } from 'lib'
 import modals from './modals'
-import ClassesExample from './ClassesExample'
-import HooksExample from './HooksExample'
+import Page from './page'
 
 const styles: { [key: string]: CSSProperties } = {
   examplePageWrapper: {
@@ -25,8 +24,7 @@ const ExamplesPage = () => (
     <ModalsProvider modals={modals}>
       <div style={styles.examplePageWrapper}>
         <div style={styles.examplePage}>
-          <ClassesExample />
-          <HooksExample />
+          <Page />
         </div>
       </div>
     </ModalsProvider>

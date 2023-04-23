@@ -24,12 +24,14 @@
   },
   "homepage": "https://github.com/kddaddy/react-modalized",
   "scripts": {
-    "build": "./bin/build",
-    "dev": "./bin/dev",
-    "test": "./bin/test",
+    "build:examples": "export ROLLUP_BUILD=examples; rollup -c",
+    "build:lib": "export ROLLUP_BUILD=lib; rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "lint": "tslint '(lib|examples)/**/*.ts{,x}'",
+    "lint:fix": "tslint --fix '(lib|test)/**/*.ts{,x}'",
     "prebuild": "./bin/prebuild",
-    "lint": "./bin/lint",
-    "lint:fix": "tslint --fix '(lib|test)/**/*.ts{,x}'"
+    "postbuild": "./bin/postbuild"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.2",
@@ -58,6 +60,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@rollup/plugin-json": "^6.0.0",
     "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
