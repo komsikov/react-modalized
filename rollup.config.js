@@ -67,19 +67,11 @@ const buildLibCjsConfig = {
       file: 'dist/index.esm.mjs',
       format: 'esm',
       sourcemap: !production,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-      },
     },
     {
       file: 'dist/index.cjs.js',
       format: 'cjs',
       sourcemap: !production,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-      },
     },
     {
       name: 'ReactModalized',
