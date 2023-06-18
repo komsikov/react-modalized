@@ -49,37 +49,7 @@ const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development')
   }),
-  commonjs({
-    include: /\/node_modules\//,
-    include: 'node_modules/**',
-    // exclude: ['node_modules/process-es6/**'],
-    namedExports: {
-      'node_modules/react/index.js': [
-        'Children',
-        'Component',
-        'PureComponent',
-        'PropTypes',
-        'createElement',
-        'Fragment',
-        'cloneElement',
-        'StrictMode',
-        'createFactory',
-        'createRef',
-        'createContext',
-        'isValidElement',
-        'isValidElementType',
-        'useCallback',
-        'useMemo',
-        'useContext',
-        'Suspense',
-        'useState',
-        'useEffect',
-        'useRef',
-        'lazy',
-        'memo',
-      ],
-    },
-  }),
+  commonjs(),
   nodeResolve(),
   progress(),
   json,
@@ -97,20 +67,32 @@ const buildLibCjsConfig = {
       file: 'dist/index.esm.mjs',
       format: 'esm',
       sourcemap: !production,
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+      },
     },
     {
       file: 'dist/index.cjs.js',
       format: 'cjs',
       sourcemap: !production,
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+      },
     },
     {
-      name: 'react-modalized',
+      name: 'ReactModalized',
       file: 'dist/index.umd.js',
       format: 'umd',
       sourcemap: !production,
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+      },
     },
   ],
-  external: ['React', 'ReactDOM'],
+  external: ['react', 'react-dom'],
   plugins: [
     ...commonPlugins,
     !production && visualizer({

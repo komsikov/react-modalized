@@ -1,6 +1,6 @@
 {
   "name": "react-modalized",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React modals library",
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/komsikov/react-modalized/issues"
   },
-  "homepage": "https://github.com/kddaddy/react-modalized",
+  "homepage": "https://github.com/komsikov/react-modalized/issues",
   "scripts": {
     "build:examples": "export ROLLUP_BUILD=examples; rollup -c",
     "build:lib": "export ROLLUP_BUILD=lib; rollup -c",

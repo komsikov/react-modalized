@@ -6,6 +6,8 @@ jobs:
       - image: circleci/node:12
         environment:
           NODE_ENV: production
+          # ROLLUP_WATCH: 0
+          # ROLLUP_BUILD: lib
     steps:
       - checkout
       - run:
@@ -13,7 +15,7 @@ jobs:
         command: npm i
       - run:
         name: Building project ...
-        command: npm run build
+        command: npm run build:lib
         environment:
           NODE_ENV: production
 
