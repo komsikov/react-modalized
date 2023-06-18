@@ -22,7 +22,7 @@ export type State<P extends object = any> = {
   modalsProps: ModalProps<P>,
 };
 
-interface ModalsProviderImpl {
+export interface ModalsProviderImpl {
   modalNode: RefType;
   showModal(modal: string, modalProps: ModalProps): void;
   closeModal(modal: string): void;

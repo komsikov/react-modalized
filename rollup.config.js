@@ -41,7 +41,6 @@ const copyPlugin = ({ paths, dir }) => ({
   },
 });
 
-
 const production = process.env.NODE_ENV === 'production'
 const buildType = process.env.ROLLUP_BUILD
 
@@ -50,17 +49,10 @@ const commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development')
   }),
-  nodeResolve(),
-  progress(),
-  json,
-  ts({
-    typescript,
-    tsconfig: `./tsconfig.${buildType}.json`,
-    sourceMap: true,
-  }),
   commonjs({
-    include: ['node_modules/**'],
-    exclude: ['node_modules/process-es6/**'],
+    include: /\/node_modules\//,
+    include: 'node_modules/**',
+    // exclude: ['node_modules/process-es6/**'],
     namedExports: {
       'node_modules/react/index.js': [
         'Children',
@@ -88,19 +80,27 @@ const commonPlugins = [
       ],
     },
   }),
+  nodeResolve(),
+  progress(),
+  json,
+  ts({
+    typescript,
+    tsconfig: `./tsconfig.${buildType}.json`,
+    sourceMap: !production,
+  }),
 ];
 
 const buildLibCjsConfig = {
   input: 'lib/index.ts',
   output: [
     {
-      file: 'dist/index.es.js',
-      format: 'es',
+      file: 'dist/index.esm.mjs',
+      format: 'esm',
       sourcemap: !production,
     },
     {
-      file: 'dist/index.sjs.js',
-      format: 'system',
+      file: 'dist/index.cjs.js',
+      format: 'cjs',
       sourcemap: !production,
     },
     {
@@ -113,7 +113,7 @@ const buildLibCjsConfig = {
   external: ['React', 'ReactDOM'],
   plugins: [
     ...commonPlugins,
-    visualizer({
+    !production && visualizer({
       filename: 'dist/stats.html',
       template: 'treemap',
     }),
@@ -142,7 +142,6 @@ const buildExamplesConfig = {
       host: "localhost",
       port: 3000,
     }),
-    // livereload({ watch: ['examples', 'lib', 'dist'] }),
     livereload(),
     copyPlugin({
       paths: [
