@@ -13,8 +13,42 @@ Modals system rendering for react applications
   npm install react-modalized
 ```
 
-## Update dependencies
+## Example
 
-```bash
-  npx -p npm-check-updates -c ncu
+```tsx
+import React, { lazy } from 'react';
+import { createRoot } from 'react-dom/client';
+import { useModalsProvider, ModalsContext, ModalsRoot } from 'react-modalized';
+import { modals } from 'src/components/modals';
+
+const modals = {
+  MODAL_NAME: lazy(() => import('./modalName')),
+};
+
+const App = () => {
+  const {
+    showModal, closeModal, resetModals, getState,
+  } = useModalsProvider(modals);
+
+  const modalsState = getState();
+
+  return (
+    <ModalsContext.Provider
+      value={{
+        showModal,
+        closeModal,
+        resetModals,
+        getState,
+      }}
+    >
+      <Page />
+      <ModalsRoot modalsState={modalsState} modalsSet={modals} />
+    </ModalsContext.Provider>
+  );
+};
+
+const container = document.getElementById('app');
+const root = createRoot(container);
+
+root.render(<App />);
 ```
