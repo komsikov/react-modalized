@@ -18,8 +18,6 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.mjs",
   "browser": "dist/index.umd.js",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.mjs",
   "types": "dist/lib/index.d.ts",
   "author": "bogeyboy",
   "bugs": {
