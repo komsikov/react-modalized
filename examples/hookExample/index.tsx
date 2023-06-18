@@ -20,7 +20,7 @@ const styles: { [key: string]: CSSProperties } = {
 }
 
 const ExamplesPage = () => {
-  const { showModal, closeModal, resetModals, getState } = useModalsProvider({ modals });
+  const { showModal, closeModal, resetModals, getState } = useModalsProvider(modals);
   const modalsState = getState();
   
 
