@@ -1,6 +1,6 @@
 import React, { Suspense, CSSProperties } from 'react'
 import { createRoot } from 'react-dom/client';
-import { ModalsProvider } from 'lib'
+import { ModalsContext, useModalsProvider, ModalsRoot } from 'lib'
 import modals from './modals'
 import Page from './page'
 
@@ -19,17 +19,29 @@ const styles: { [key: string]: CSSProperties } = {
   }
 }
 
-const ExamplesPage = () => (
-  <Suspense fallback="loading...">
-    <ModalsProvider modals={modals}>
-      <div style={styles.examplePageWrapper}>
-        <div style={styles.examplePage}>
-          <Page />
+const ExamplesPage = () => {
+  const { showModal, closeModal, resetModals, getState } = useModalsProvider({ modals });
+  const modalsState = getState();
+  
+
+  return (
+    <Suspense fallback="loading...">
+      <ModalsContext.Provider value={{
+        showModal,
+        closeModal,
+        resetModals,
+        getState,
+      }}>
+        <div style={styles.examplePageWrapper}>
+          <div style={styles.examplePage}>
+            <Page />
+          </div>
         </div>
-      </div>
-    </ModalsProvider>
-  </Suspense>
-);
+        <ModalsRoot modalsState={modalsState} modalsSet={modals} />
+      </ModalsContext.Provider>
+    </Suspense>
+  );
+}
 
 const container = document.getElementById('lib-examples-root') as HTMLElement;
 

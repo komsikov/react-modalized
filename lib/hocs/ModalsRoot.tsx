@@ -6,7 +6,7 @@ type Props = {
   modalsSet: any
 };
 
-const ModalsRoot = ({ modalsState, modalsSet }: Props) => {
+export const ModalsRoot = ({ modalsState, modalsSet }: Props) => {
   const { modalsProps } = modalsState;
 
   const modals = useMemo(() => Object.keys(modalsState.modals).map((modalName) => {
@@ -29,5 +29,3 @@ const ModalsRoot = ({ modalsState, modalsSet }: Props) => {
     </>
   );
 };
-
-export default ModalsRoot;

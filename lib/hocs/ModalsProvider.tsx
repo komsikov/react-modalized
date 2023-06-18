@@ -1,5 +1,5 @@
 import React, { Component, CSSProperties, PropsWithChildren } from 'react'
-import Context from 'lib/context'
+import { ModalsContext } from 'lib/context'
 import { ModalProps, RefType, ModalsProviderImpl, State, Props } from 'lib/types'
 
 type ModalsContainerProps = {
@@ -101,7 +101,7 @@ export class ModalsProvider extends Component<PropsWithChildren<Props>, State> i
 
   render() {
     return(
-      <Context.Provider value={this.providerValue()}>
+      <ModalsContext.Provider value={this.providerValue()}>
         {this.props.children}
         <div id="modals-root">
           {
@@ -121,7 +121,7 @@ export class ModalsProvider extends Component<PropsWithChildren<Props>, State> i
             )
           }
         </div>
-      </Context.Provider>
+      </ModalsContext.Provider>
     )
   }
 }
