@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react'
 import { useModal } from 'lib'
 
-const modalContent = 'ContentContent ContentContentContentContent ContentContentContentContent ContentContentContent'
+const modalContent = 'Very large content text Very large content text Very large content text Very large content text Very large content text Very large content text Very large content text Very large content text'
 
 const styles: { [key: string]: CSSProperties } = {
   hooksExampleWrapper: {
@@ -25,7 +25,10 @@ const HooksExample = () => {
     <div style={styles.hooksExampleWrapper}>
       <button
         style={styles.btn}
-        onClick={() => showModal('TEST_MODAL', { title: 'Hooks modal', content: modalContent })}
+        onClick={() => showModal('TEST_MODAL', {
+          title: 'Hooks modal',
+          content: modalContent,
+        })}
       >
         hooks based modal
       </button>

@@ -25,7 +25,34 @@ const testModalStyles: { [key: string]: CSSProperties } = {
     borderRadius: '14px',
     padding: '40px 32px',
     background: '#9695a1',
-  }
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  input: {
+    width: '100%',
+    height: '45px',
+  },
+
+  btnGroup: {
+    width: '100%',
+    height: '45px',
+    marginTop: 'auto',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+
+  sendBtn: {
+    width: 'max-content',
+    height: '45px',
+    background: 'green',
+  },
+
+  closeBtn: {
+    width: 'max-content',
+    height: '45px',
+    background: 'red',
+  },
 }
 
 const TestModal = ({ title, content, closeModal }: Props) => (
@@ -33,10 +60,10 @@ const TestModal = ({ title, content, closeModal }: Props) => (
     <div style={testModalStyles.modal}>
       <h2>{title}</h2>
       <p>{content}</p>
-      <input type="text" />
-      <div>
-        <button onClick={() => closeModal()}>Send</button>
-        <button onClick={() => closeModal()}>Close</button>
+      <input type="text" style={testModalStyles.input} />
+      <div style={testModalStyles.btnGroup}>
+        <button onClick={() => closeModal()} style={testModalStyles.sendBtn}>Send</button>
+        <button onClick={() => closeModal()} style={testModalStyles.closeBtn}>Close</button>
       </div>
     </div>
   </div>

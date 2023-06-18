@@ -1,5 +1,5 @@
 import React, { Suspense, CSSProperties } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client';
 import { ModalsProvider } from 'lib'
 import modals from './modals'
 import Page from './page'
@@ -31,7 +31,7 @@ const ExamplesPage = () => (
   </Suspense>
 );
 
-ReactDOM.render(
-  <ExamplesPage />,
-  document.getElementById('lib-examples-root'),
-)
+const container = document.getElementById('lib-examples-root') as HTMLElement;
+
+const root = createRoot(container);
+root.render(<ExamplesPage />);

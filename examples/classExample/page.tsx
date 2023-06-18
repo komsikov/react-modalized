@@ -23,7 +23,6 @@ const styles: { [key: string]: CSSProperties } = {
 }
 
 const ClassesExample = ({ showModal }: Props) => {
-  console.log('RENDER')
   return (
     <div style={styles.classesExampleWrapper}>
       <button

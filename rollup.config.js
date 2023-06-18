@@ -41,7 +41,8 @@ const copyPlugin = ({ paths, dir }) => ({
   },
 });
 
-const production = !process.env.ROLLUP_WATCH
+
+const production = process.env.NODE_ENV === 'production'
 const buildType = process.env.ROLLUP_BUILD
 
 const commonPlugins = [
@@ -54,7 +55,7 @@ const commonPlugins = [
   json,
   ts({
     typescript,
-    tsconfig: './tsconfig.json',
+    tsconfig: `./tsconfig.${buildType}.json`,
     sourceMap: true,
   }),
   commonjs({
@@ -89,21 +90,32 @@ const commonPlugins = [
   }),
 ];
 
-const buildLibConfig = {
+const buildLibCjsConfig = {
   input: 'lib/index.ts',
-  output: {
-    name: 'react-modalized',
-    dir: 'dist',
-    format: 'umd',
-    sourcemap: !production,
-    globals: ['react'],
-  },
+  output: [
+    {
+      file: 'dist/index.es.js',
+      format: 'es',
+      sourcemap: !production,
+    },
+    {
+      file: 'dist/index.sjs.js',
+      format: 'system',
+      sourcemap: !production,
+    },
+    {
+      name: 'react-modalized',
+      file: 'dist/index.umd.js',
+      format: 'umd',
+      sourcemap: !production,
+    },
+  ],
   external: ['React', 'ReactDOM'],
   plugins: [
     ...commonPlugins,
     visualizer({
       filename: 'dist/stats.html',
-      template: 'network',
+      template: 'treemap',
     }),
     production && terser(),
   ],
@@ -130,9 +142,14 @@ const buildExamplesConfig = {
       host: "localhost",
       port: 3000,
     }),
-    livereload({ watch: ['examples', 'lib', 'dist'] }),
+    // livereload({ watch: ['examples', 'lib', 'dist'] }),
+    livereload(),
     copyPlugin({
-      paths: ['examples/classExample/class.html', 'examples/hookExample/hook.html'],
+      paths: [
+        'examples/classExample/class.html',
+        'examples/hookExample/hook.html',
+        'examples/index.html',
+      ],
       dir: 'dist',
     })
   ]
@@ -141,7 +158,7 @@ const buildExamplesConfig = {
 const configs = [];
 
 if (buildType === 'lib') {
-  configs.push(buildLibConfig);
+  configs.push(buildLibCjsConfig);
 }
 
 if (buildType === 'examples') {

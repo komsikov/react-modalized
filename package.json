@@ -1,10 +1,10 @@
 {
   "name": "react-modalized",
-  "version": "0.1.1",
-  "description": "App modalization package",
+  "version": "0.0.1",
+  "description": "React modals library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kddaddy/react-modalize.git"
+    "url": "https://github.com/komsikov/react-modalized"
   },
   "license": "MIT",
   "keywords": [
@@ -15,18 +15,19 @@
     "js"
   ],
   "type": "module",
-  "main": "dist/react-modalized.cjs.js",
-  "module": "dist/react-modalized.esm.js",
-  "browser": "dist/react-modalized.umd.js",
-  "author": "kddaddy",
+  "main": "dist/index.es.js",
+  "module": "dist/index.sjs.js",
+  "browser": "dist/index.umd.js",
+  "types": "dist/lib/index.d.ts",
+  "author": "bogeyboy",
   "bugs": {
-    "url": "https://github.com/kddaddy/react-modalized/issues"
+    "url": "https://github.com/komsikov/react-modalized/issues"
   },
   "homepage": "https://github.com/kddaddy/react-modalized",
   "scripts": {
     "build:examples": "export ROLLUP_BUILD=examples; rollup -c",
     "build:lib": "export ROLLUP_BUILD=lib; rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "export ROLLUP_BUILD=examples; rollup -c -w",
     "test": "jest",
     "lint": "tslint '(lib|examples)/**/*.ts{,x}'",
     "lint:fix": "tslint --fix '(lib|test)/**/*.ts{,x}'",

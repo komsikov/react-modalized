@@ -31,6 +31,6 @@
       "examples": ["examples"],
     }
   },
-  "include": ["lib/**/*"],
+  "include": ["lib/**/*", "examples/**/*"],
   "exclude": ["node_modules", "dist"]
 }
