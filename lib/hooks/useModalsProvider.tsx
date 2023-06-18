@@ -1,10 +1,9 @@
 import { useState, useCallback } from 'react'
 import {
-  Props,
   State,
   ModalList,
   ModalProps,
-} from 'lib/types'
+} from '../types'
 
 const getInitialState = (modals: ModalList) => {
   const initialModals = Object.keys(modals)
@@ -16,7 +15,7 @@ const getInitialState = (modals: ModalList) => {
   };
 };
 
-const useModalsProvider = ({ modals }: Props) => {
+const useModalsProvider = (modals: ModalList) => {
   const [state, setState] = useState<State>(() => getInitialState(modals));
 
   const showModal = useCallback((modalKey: string, modalProps: ModalProps) => {

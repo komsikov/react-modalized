@@ -1,6 +1,6 @@
 import React, { CSSProperties, memo } from 'react'
-import {withModal} from 'lib'
-import {ModalList, ModalsProps} from 'lib/types'
+import {withModal} from '../../lib'
+import { ModalList, ModalsProps } from '../../lib/types'
 
 type Props = {
   modals: ModalList,

@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo } from 'react';
-import { State } from 'lib/types';
+import { State } from '../types';
 
 type Props = {
   modalsState: State,

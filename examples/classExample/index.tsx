@@ -1,6 +1,6 @@
 import React, { Suspense, CSSProperties } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ModalsProvider } from 'lib'
+import { ModalsProvider } from '../../lib'
 import modals from './modals'
 import Page from './page'
 

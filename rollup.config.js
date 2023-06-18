@@ -64,7 +64,7 @@ const buildLibCjsConfig = {
   input: 'lib/index.ts',
   output: [
     {
-      file: 'dist/index.esm.mjs',
+      file: 'dist/index.esm.js',
       format: 'esm',
       sourcemap: !production,
     },

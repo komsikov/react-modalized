@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react'
-import { useModal } from 'lib'
+import { useModal } from '../../lib'
 
 const modalContent = 'Very large content text Very large content text Very large content text Very large content text Very large content text Very large content text Very large content text Very large content text'
 

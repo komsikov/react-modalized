@@ -1,4 +1,4 @@
-import React, { ElementType } from 'react'
+import type { ElementType, RefObject } from 'react'
 
 export type ModalProps<P extends object = any> = { [key: string]: P };
 
@@ -13,9 +13,7 @@ export type ModalList = {[key: string]: ElementType}
 
 export type ModalState = {[key: string]: boolean}
 
-export type RefType = React.RefObject<HTMLDivElement>
-
-export type Props = { modals: ModalList }
+export type RefType = RefObject<HTMLDivElement>
 
 export type State<P extends object = any> = {
   modals: ModalState,

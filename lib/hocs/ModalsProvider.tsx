@@ -1,6 +1,6 @@
 import React, { Component, CSSProperties, PropsWithChildren } from 'react'
-import { ModalsContext } from 'lib/context'
-import { ModalProps, RefType, ModalsProviderImpl, State, Props } from 'lib/types'
+import { ModalsContext } from '../context'
+import { ModalProps, RefType, ModalsProviderImpl, State, ModalList } from '../types'
 
 type ModalsContainerProps = {
   styles: CSSProperties,
@@ -22,6 +22,8 @@ const modalsProviderStyles: { [key: string]: CSSProperties } = {
     zIndex: 10,
   },
 }
+
+type Props = { modals: ModalList };
 
 export class ModalsProvider extends Component<PropsWithChildren<Props>, State> implements ModalsProviderImpl {
   modalNode: RefType = React.createRef()
