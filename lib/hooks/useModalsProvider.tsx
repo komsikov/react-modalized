@@ -1,15 +1,10 @@
-import {
-  useRef,
-  useState,
-  useCallback,
-} from 'react'
+import { useState, useCallback } from 'react'
 import {
   Props,
   State,
   ModalList,
   ModalProps,
 } from 'lib/types'
-import { useClickOutside } from 'lib/utils/useClickOutside'
 
 const getInitialState = (modals: ModalList) => {
   const initialModals = Object.keys(modals)
@@ -22,13 +17,7 @@ const getInitialState = (modals: ModalList) => {
 };
 
 const useModalsProvider = ({ modals }: Props) => {
-  const modalNode = useRef<HTMLDivElement>(null)
   const [state, setState] = useState<State>(() => getInitialState(modals));
-
-  useClickOutside(
-    modalNode,
-    () => resetModals()
-  );
 
   const showModal = useCallback((modalKey: string, modalProps: ModalProps) => {
     if (!modals[modalKey]) {
