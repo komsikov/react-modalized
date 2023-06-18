@@ -19,7 +19,7 @@ const styles: { [key: string]: CSSProperties } = {
 }
 
 const HooksExample = () => {
-  const { showModal } = useModal();
+  const { showModal, closeModal } = useModal();
 
   return (
     <div style={styles.hooksExampleWrapper}>
@@ -28,6 +28,7 @@ const HooksExample = () => {
         onClick={() => showModal('TEST_MODAL', {
           title: 'Hooks modal',
           content: modalContent,
+          closeModal: () => closeModal('TEST_MODAL'),
         })}
       >
         hooks based modal

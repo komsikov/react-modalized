@@ -9,6 +9,7 @@ type Props = {
 const testModalStyles: { [key: string]: CSSProperties } = {
   testModalOverlay: {
     position: 'absolute',
+    top: '0',
     width: "100%",
     height: '100%',
     background: 'rgba(0 0 0 / 40%)',
@@ -55,18 +56,20 @@ const testModalStyles: { [key: string]: CSSProperties } = {
   },
 }
 
-const TestModal = ({ title, content, closeModal }: Props) => (
-  <div style={testModalStyles.testModalOverlay}>
-    <div style={testModalStyles.modal}>
-      <h2>{title}</h2>
-      <p>{content}</p>
-      <input type="text" style={testModalStyles.input} />
-      <div style={testModalStyles.btnGroup}>
-        <button onClick={() => closeModal()} style={testModalStyles.sendBtn}>Send</button>
-        <button onClick={() => closeModal()} style={testModalStyles.closeBtn}>Close</button>
+const TestModal = ({ title, content, closeModal }: Props) => {
+  return (
+    <div style={testModalStyles.testModalOverlay}>
+      <div style={testModalStyles.modal}>
+        <h2>{title}</h2>
+        <p>{content}</p>
+        <input type="text" style={testModalStyles.input} />
+        <div style={testModalStyles.btnGroup}>
+          <button onClick={() => closeModal()} style={testModalStyles.sendBtn}>Send</button>
+          <button onClick={() => closeModal()} style={testModalStyles.closeBtn}>Close</button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default TestModal;
