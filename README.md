@@ -1,14 +1,43 @@
-# react-modalized
+# moxie-react
 
-![build](https://img.shields.io/circleci/build/github/kddaddy/react-modalized.svg?style=for-the-badge&token=3a0afc02b172a8595df1cbc17c1bb44b2181b347)
-[![CircleCI](https://circleci.com/gh/kddaddy/react-modalized/tree/master.svg?style=svg)](https://circleci.com/gh/kddaddy/react-modalized/tree/master)
+React bindings для библиотеки Moxie.
 
-Modals system rendering for react applications
+Пример:
 
-![react-modalized](./modalize.svg)
+```tsx
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { MoxieProvider, useMoxie, Modal } from "moxie-react";
 
-## Getting started
+const App = () => {
+  const { showModal, closeModal } = useMoxie();
+  return (
+    <>
+      <button onClick={() => showModal("TEST")}>Open</button>
+      <Modal name="TEST">
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            display: "grid",
+            placeItems: "center",
+            background: "rgba(0 0 0 / 40%)",
+          }}
+        >
+          <div style={{ background: "#fff", padding: 24 }}>
+            <h2>Test</h2>
+            <button onClick={() => closeModal("TEST")}>Close</button>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+};
 
-```bash
-  npm install react-modalized
+const container = document.getElementById("app")!;
+createRoot(container).render(
+  <MoxieProvider container={container}>
+    <App />
+  </MoxieProvider>
+);
 ```

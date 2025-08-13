@@ -14,6 +14,6 @@ function log(it) {
 }
 
 if (!ADBLOCK && !CI && !DISABLE_OPENCOLLECTIVE && !SILENT) {
-  log('\u001B[96mThank you for using react-modalized (\u001B[94m https://github.com/kddaddy/react-modalized \u001B[96m) for modalizeing yor app!\u001B[0m\n')
-  log('\u001B[96mAlso, the author of react-modalizing (\u001B[94m https://github.com/kddaddy \u001B[96m) is looking for a good job -)\u001B[0m\n')
+  log('\u001B[96mThank you for using moxie (\u001B[94m https://github.com/kddaddy/moxie \u001B[96m) for modalizeing yor app!\u001B[0m\n')
+  log('\u001B[96mAlso, the author of moxie (\u001B[94m https://github.com/kddaddy \u001B[96m) is looking for a good job -)\u001B[0m\n')
 }
